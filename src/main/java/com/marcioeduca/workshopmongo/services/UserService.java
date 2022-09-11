@@ -36,6 +36,37 @@ public class UserService {
 		
 	}
 	
+	
+	/*   UpDate correção
+	 * Olá Marcio... ainda será preciso realizar mais uma correção no código para o Spring 2.x.x. Pois na verdade repo.findByid(obj.getId()) irá retornar um 'Optional<User>' e não um 'User'. Para extrair o 'User' do 'Optional<User>' chame a função '.get()' do próprio 'Optional<>'.
+
+O código ficaria assim:
+
+
+
+public User update(User entity) {
+
+     User newObj = repo.findById(entity.getId()).get();
+
+     updateData(newObj, entity);
+
+     return repo.save(newObj);
+
+}
+	 */
+	public User upDate(User obj) {
+		User newObj = repo.findById(obj.getId()).get();
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
+	
+	private void updateData(User newObj, User obj) {
+		
+		newObj.setName(obj.getName());
+		newObj.setEmail(obj.getEmail());
+		
+	}
+
 	public User fromDTO(UserDTO objDto) {
 		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
 	}
