@@ -52,8 +52,8 @@ public User update(User entity) {
 
      return repo.save(newObj);
 
-}
-	 */
+}*/
+	 
 	public User upDate(User obj) {
 		User newObj = repo.findById(obj.getId()).get();
 		updateData(newObj, obj);
